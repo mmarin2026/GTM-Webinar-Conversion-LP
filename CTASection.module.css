@@ -1,0 +1,35 @@
+import Hero from '@/components/Hero';
+import GTMPackage from '@/components/GTMPackage';
+import LogosStrip from '@/components/LogosStrip';
+import WhySection from '@/components/WhySection';
+import PlanSection from '@/components/PlanSection';
+import CTASection from '@/components/CTASection';
+import Footer from '@/components/Footer';
+import styles from './page.module.css';
+
+export default function TalkToSalesPage() {
+  return (
+    <>
+      {/* Ambient glow orbs */}
+      <div className={styles.orb1} aria-hidden="true" />
+      <div className={styles.orb2} aria-hidden="true" />
+      <div className={styles.orb3} aria-hidden="true" />
+
+      <main className={styles.main}>
+        <Hero />
+        <div className={styles.divider} />
+        <GTMPackage />
+        <div className={styles.divider} />
+        <LogosStrip />
+        <div className={styles.divider} />
+        <WhySection />
+        <div className={styles.divider} />
+        <PlanSection />
+        <div className={styles.divider} />
+        <CTASection />
+      </main>
+
+      <Footer />
+    </>
+  );
+}

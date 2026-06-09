@@ -1,0 +1,67 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import styles from './WhySection.module.css';
+
+const cards = [
+  {
+    icon: '🎯',
+    title: 'Post-Call Hero',
+    body: 'After every SalesLoft call, Make pulls the transcript and sends the rep a Slack message with suggested Salesforce updates, a draft follow-up email, and internal notes, ready to approve or edit. Clean CRM data on every deal, zero manual entry.',
+  },
+  {
+    icon: '🔍',
+    title: 'Accurate Deal Loss Analysis',
+    body: 'When a deal is closed-lost, Make pulls SalesLoft transcripts and email history to produce a brief that contrasts the rep\'s stated reason against what actually happened. Real loss reasons, at scale. Not what got typed under pressure.',
+  },
+  {
+    icon: '🧠',
+    title: 'Multi-Signal RevOps Decision Brain',
+    body: 'Make AI Agents listen for three signals: a deal stalling in Salesforce, a completed call recording, or an email engagement drop. When any fires, they reason across your full GTM stack and act — re-enrolling in a cadence, flagging a stakeholder, surfacing an objection — then alert the rep with a one-line next step.',
+  },
+];
+
+export default function WhySection() {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          (e.target as HTMLElement).style.opacity = '1';
+          (e.target as HTMLElement).style.transform = 'translateY(0)';
+        }
+      }),
+      { threshold: 0.1 }
+    );
+    cardRefs.current.forEach((c) => c && obs.observe(c));
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section className={styles.section}>
+      <div className={styles.header}>
+        <p className={styles.eyebrow}>GTM Package use cases</p>
+        <h2 className={styles.title}>AI agents built for your revenue team</h2>
+      </div>
+      <div className={styles.grid}>
+        {cards.map((c, i) => (
+          <div
+            key={c.title}
+            className={styles.card}
+            ref={(el) => { cardRefs.current[i] = el; }}
+            style={{
+              opacity: 0,
+              transform: 'translateY(24px)',
+              transition: `opacity 0.5s ease ${i * 0.08}s, transform 0.5s ease ${i * 0.08}s`,
+            }}
+          >
+            <div className={styles.icon}>{c.icon}</div>
+            <div className={styles.cardTitle}>{c.title}</div>
+            <p className={styles.cardBody}>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
