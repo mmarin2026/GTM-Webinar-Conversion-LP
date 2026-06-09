@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import TallyForm from './TallyForm';
 import styles from './Hero.module.css';
 
@@ -11,20 +10,25 @@ const CHECK = (
 );
 
 const valueProps = [
-  'Native connectors for Salesforce, HubSpot, Outreach, Salesloft, Marketo, Gong, and 3,000+ more',
-  'Automate lead routing, MQL handoffs, and stage transitions — no more Slack pings between teams',
-  'Keep CRM data clean automatically — enrich, deduplicate, and sync records in real time',
-  'Build and own your automation logic — no black-box vendor workflows, no dev dependency',
-  'SOC2 Type II & GDPR compliant — enterprise-grade security for sensitive pipeline data',
+  'Make Enterprise: 3,000+ connectors, MAIA AI, and enterprise-grade governance',
+  'GTM Success Hub: Blueprints for AI agents and automation for RevOps, building blocks and recipes for accelerated time-to-value',
+  '24/7 premium support, dedicated account manager, and access to dedicated automation experts',
+  'SOC 2 Type II, ISO 27001, and GDPR compliant. Enterprise-grade security for sensitive pipeline data.',
+  'Full integration with existing AI tools for governed system access, cost control, and visibility across your organization',
 ];
 
-const stats = [
-  { num: '40', unit: '%', label: 'Faster lead response time' },
-  { num: '5',  unit: '×', label: 'Less time on manual reporting' },
-  { num: '90', unit: '%', label: 'Reduction in CRM data errors' },
+const ratings = [
+  { platform: 'Capterra', score: '4.8', count: '404', logo: 'https://images.ctfassets.net/un655fb9wln6/4mVJAYXotWJeKG66H1xcLo/52b0a64dd7ee9104df1c8abd545e3467/capterra-1_1.svg' },
+  { platform: 'G2',       score: '4.7', count: '238', logo: 'https://images.ctfassets.net/un655fb9wln6/6m5yU9NimAwnAuEZRPZgVU/c513be077aad5437318b221fcd61a7fa/g2-reviews_1.svg' },
+  { platform: 'GetApp',   score: '4.8', count: '404', logo: 'https://images.ctfassets.net/un655fb9wln6/lNwhYnHtxjylTAAJbV5b8/ebb141a29cd8ad5dc38ca6edcc8e2cdb/Frame_2147238296.svg' },
+  { platform: 'Gartner',  score: '4.6', count: '20',  logo: 'https://images.ctfassets.net/un655fb9wln6/1E2wzFWbHDQTCj22j5ZOU4/b86d738c2aa480a2852d05fb5edcc152/IT_1.svg' },
 ];
 
-const logos = ['Spotify', 'BNY', 'Bolt', 'BambooHR', 'FINN'];
+const STAR = (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="#FBBF24" aria-hidden="true">
+    <path d="M6 1l1.39 2.82L10.5 4.27l-2.25 2.19.53 3.09L6 8.02 3.22 9.55l.53-3.09L1.5 4.27l3.11-.45L6 1z" />
+  </svg>
+);
 
 export default function Hero() {
   return (
@@ -32,32 +36,16 @@ export default function Hero() {
       <div className={styles.hero}>
         {/* ── Left ── */}
         <div className={styles.left}>
-          <div className={styles.badge}>
-            <span className={styles.badgeDot} />
-            Revenue Operations
-          </div>
-
           <h1 className={styles.title}>
-            Stop losing revenue to<br />
-            <em>gaps between your GTM tools</em>
+            The AI automation platform<br />
+            <em>built for revenue teams</em>
           </h1>
 
           <p className={styles.sub}>
-            Make connects your CRM, MAP, SEP, and billing systems so leads route
-            instantly, handoffs are automatic, and your pipeline data is always
-            clean — without waiting on engineering.
+            The GTM Package gives your team Make&apos;s visual automation platform, AI agents
+            pre-built for your revenue stack, and dedicated support to deploy your automation
+            stack fast, from MQL to closed-won, no engineering required.
           </p>
-
-          <div className={styles.stats}>
-            {stats.map((s) => (
-              <div key={s.label} className={styles.stat}>
-                <div className={styles.statNum}>
-                  {s.num}<span>{s.unit}</span>
-                </div>
-                <div className={styles.statLabel}>{s.label}</div>
-              </div>
-            ))}
-          </div>
 
           <ul className={styles.valueProps}>
             {valueProps.map((v) => (
@@ -65,11 +53,17 @@ export default function Hero() {
             ))}
           </ul>
 
-          <div className={styles.trustLogos}>
-            <span className={styles.trustLabel}>Trusted by RevOps teams at</span>
-            <div className={styles.pills}>
-              {logos.map((l) => <span key={l} className={styles.pill}>{l}</span>)}
-            </div>
+          {/* Ratings strip */}
+          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', marginTop: '28px' }}>
+            {ratings.map((r) => (
+              <div key={r.platform} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <img src={r.logo} alt={r.platform} style={{ height: '20px', width: 'auto', opacity: 0.8 }} />
+                <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: 'rgba(255,255,255,0.7)' }}>
+                  {STAR}
+                  {r.score} <span style={{ opacity: 0.5 }}>({r.count})</span>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -77,8 +71,7 @@ export default function Hero() {
         <div id="form" className={styles.formPanel}>
           <h2 className={styles.formTitle}>Talk to a RevOps specialist</h2>
           <p className={styles.formSub}>
-            Tell us about your revenue stack and we&apos;ll show you exactly how
-            to close the gaps — within one business day.
+            Tell us about your revenue stack and we&apos;ll show you exactly how to close the gaps.
           </p>
           <TallyForm />
         </div>
@@ -86,3 +79,4 @@ export default function Hero() {
     </section>
   );
 }
+
